@@ -136,6 +136,7 @@ class Connection:
                 self.stream.change_device(selection)
 
                 if self.voice.is_connected():
+                    # discord.opus.load_opus()
                     self.voice.play(self.stream)
 
             else:
@@ -185,6 +186,7 @@ class Connection:
                 )
 
                 if not_playing:
+                    # discord.opus.load_opus()
                     self.voice.play(self.stream)
 
             else:
