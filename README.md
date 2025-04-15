@@ -1,34 +1,71 @@
-# discord-audio-pipe
+# Discord Audio Pipe
+
 [![GitHub Workflow Status](https://github.com/QiCuiHub/discord-audio-pipe/workflows/CI/badge.svg)](https://github.com/QiCuiHub/discord-audio-pipe/actions?query=workflow%3ACI)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/QiCuiHub/discord-audio-pipe)](https://github.com/QiCuiHub/discord-audio-pipe/releases/latest)
 
-Simple program to send stereo audio (microphone, stereo mix, virtual audio cable, etc) into a discord bot.
+A simple and powerful program to pipe stereo audio (microphone, stereo mix, virtual audio cable, etc.) into a Discord bot. Perfect for streaming audio from your system to Discord voice channels.
+
+## Features
+
+- 🎤 Stream any audio source to Discord
+- 🖥️ Simple GUI interface
+- ⌨️ Command-line interface for automation
+- 🔍 Device and channel querying tools
+- 📝 Detailed logging for troubleshooting
+- 🔄 Multiple simultaneous connections
+
+## Quick Start
+
+### Download
 
 You can download the latest release [**here**](https://github.com/QiCuiHub/discord-audio-pipe/releases)
-- If you are using the source code, install the dependencies and start the program using `main.pyw`
-- The `.exe` does not require python or dependencies
 
-## Setting up a Bot account
-1. Follow the steps [**here**](https://docs.pycord.dev/en/master/discord.html) to setup and invite a discord bot
-2. To link the program to your bot, create a file ``token.txt`` in the same directory as the `.exe` / `main.pyw` and save the bot token inside
+### Bot Setup
 
-## Dependencies
-Requires Python 3.8+. Install dependencies by running `pip3 install -r requirements.txt`
+1. Create a Discord bot following [Discord's guide](https://discord.com/developers/docs/getting-started)
+2. Enable the following bot permissions:
+   - `View Channels`
+   - `Connect`
+   - `Speak`
+3. Create a `token.txt` file in the program directory and paste your bot token
 
-In some cases PortAudio and xcb libraries may be missing on linux. On Ubuntu they can be installed with
-```
-    $ sudo apt-get install libportaudio2
-    $ sudo apt-get install libxcb-xinerama0
-```
-macOS requires PortAudio and Opus libraries
-```
-    $ brew install portaudio --HEAD
-    $ brew install opus
+### Running the Program
+
+- **Windows**: Double-click the `.exe` file
+- **Source Code**: Run `python main.pyw`
+- **CLI Mode**: See [Command Line Usage](#command-line-usage)
+
+## Installation
+
+### Windows
+
+1. Download the latest `.exe` release
+2. No additional installation required
+
+### macOS
+
+```bash
+# Install dependencies
+brew install portaudio --HEAD
+brew install opus
+
+# Install Python dependencies
+pip install -r requirements.txt
 ```
 
-## CLI
-Running the `.exe` / `main.pyw` without any arguments will start the graphical interface. Alternatively, discord-audio-pipe can be run from the command line and contains some tools to query system audio devices and accessible channels.
+### Linux
+
+```bash
+# Install system dependencies
+sudo apt-get install libportaudio2 libxcb-xinerama0
+
+# Install Python dependencies
+pip install -r requirements.txt
 ```
+
+## Command Line Usage
+
+```text
 usage: main.pyw [-h] [-t TOKEN] [-v] [-c CHANNEL] [-d DEVICE] [-D] [-C]
 
 Discord Audio Pipe
@@ -49,3 +86,56 @@ Queries:
   -D, --devices         Query compatible audio devices
   -C, --channels        Query servers and channels (requires token)
 ```
+
+## Troubleshooting
+
+### Common Issues
+
+#### Opus Library Not Found
+
+- **macOS**: Ensure Opus is installed via Homebrew: `brew install opus`
+- **Linux**: Install Opus: `sudo apt-get install libopus0`
+
+#### No Audio Devices Found
+
+- Check if your audio device is properly connected
+- Ensure the device is not being used by another application
+- Try running with `-D` flag to list available devices
+
+#### Bot Can't Join Voice Channel
+
+- Verify bot permissions in Discord server settings
+- Check if the bot has been invited with proper permissions
+- Ensure the bot is not already in another voice channel
+
+### Logs
+
+Logs are stored in the `logs` directory:
+
+- `DAP_errors.log`: Contains error messages and stack traces
+- `discord.log`: Contains debug information (when verbose mode is enabled)
+
+## Development
+
+### Requirements
+
+- Python 3.8+
+- Dependencies listed in `requirements.txt`
+
+### Building
+
+```bash
+# Install build dependencies
+pip install pyinstaller
+
+# Build executable
+python -m PyInstaller build/main.spec
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
