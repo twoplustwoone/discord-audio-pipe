@@ -18,6 +18,18 @@ import sound
 import asyncio
 import discord
 import argparse
+import os
+
+# Initialize Opus library
+try:
+    # Try to load Opus from Homebrew installation
+    opus_path = "/opt/homebrew/lib/libopus.dylib"  # For Apple Silicon
+    if not os.path.exists(opus_path):
+        opus_path = "/usr/local/lib/libopus.dylib"  # For Intel Macs
+    discord.opus.load_opus(opus_path)
+except Exception as e:
+    print(f"Failed to load Opus library: {e}")
+    sys.exit(1)
 
 # commandline args
 parser = argparse.ArgumentParser(description="Discord Audio Pipe")
