@@ -2,7 +2,7 @@ import discord
 import sounddevice as sd
 from pprint import pformat
 
-DEFAULT = 0
+DEFAULT = sd.default.hostapi
 sd.default.channels = 2
 sd.default.dtype = "int16"
 sd.default.latency = "low"

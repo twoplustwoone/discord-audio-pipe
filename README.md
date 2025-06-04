@@ -57,7 +57,7 @@ pip install -r requirements.txt
 
 ```bash
 # Install system dependencies
-sudo apt-get install libportaudio2 libxcb-xinerama0
+sudo apt-get install libportaudio2 libxcb-xinerama0 libopus0
 
 # Install Python dependencies
 pip install -r requirements.txt
