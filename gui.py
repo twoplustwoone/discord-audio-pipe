@@ -145,11 +145,11 @@ class Connection:
         except Exception:
             logging.exception("Error on change_device")
 
-    async def change_server(self, deselcted, selected):
+    async def change_server(self, deselected, selected):
         try:
             selection = self.servers.itemData(selected)
 
-            self.parent.exclude(deselcted, selected)
+            self.parent.exclude(deselected, selected)
             self.channels.clear()
             self.channels.addItem("None", None)
 
