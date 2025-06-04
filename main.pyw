@@ -137,6 +137,11 @@ query.add_argument(
 args = parser.parse_args()
 is_gui = not any([args.channel, args.device, args.query, args.online])
 
+# Validate CLI arguments when running in CLI mode
+if (not is_gui and not args.query and not args.online and
+        (args.channel is None or args.device is None)):
+    parser.error("Both --channel and --device are required for CLI mode")
+
 # Setup logging based on verbosity
 logger = setup_logging(args.verbose)
 
