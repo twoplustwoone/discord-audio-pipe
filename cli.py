@@ -11,6 +11,10 @@ async def connect(bot, device_id, channel_id):
 
         stream = sound.PCMStream()
         channel = bot.get_channel(channel_id)
+
+        if channel is None:
+            raise ValueError(f"Channel ID {channel_id} not found")
+
         stream.change_device(device_id)
 
         voice = await channel.connect()
